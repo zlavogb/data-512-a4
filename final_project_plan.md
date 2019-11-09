@@ -1,4 +1,4 @@
-# Final project proposal
+# Final project plan
 
 ## Motivation/problem statement
 
