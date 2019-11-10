@@ -26,7 +26,7 @@ This dataset contains information on all Washington state employees, the agency 
 <details>
   <summary>Data Fields</summary>
 	
-```| Variable      | Description |
+| Variable      | Description |
 | -----------   | ----------- |
 | Agy           | Employer agency code |
 | AgyTitle      | Employer agency name |
@@ -37,7 +37,7 @@ This dataset contains information on all Washington state employees, the agency 
 | Sal2016       | Salary in 2016 |
 | Sal2017       | Salary in 2017 |
 | Sal2018       | Salary in 2018 |
-```
+
   
 </details>
 
