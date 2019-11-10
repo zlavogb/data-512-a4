@@ -2,7 +2,7 @@
 
 ## Introduction
 
-My goal is to study how the pay of public employees varies across different positions, institutions, states, and time. 
+My goal is to study how the base salary of public employees varies across different positions, institutions, states, and time. 
 I aim to classify employees into a set of different job types, with a focus on public university staff, among public institutions in Washington and California. I am interested in the relative magnitude of salaries across positions for public employees, and the pay ranges across these positions. I would also like to explore how employee salaries in different institutions, within the same state and different states, compare across similar positions. Finally, I hope to understand the trends in salaries across time, particularly over the last 5 years, and whether salaries have generally increased at a rate higher than inflation. I will compare the mean salaries across positions to the median state income levels. I also plan to adjust salaries to reflect the costs of living across different states. 
 
 I believe this topic is interesting and relevant because many public employees' salaries are funded by taxpayers, and states have the legal obligation to make this information public. According to the [Washington State Fiscal Information site](http://fiscal.wa.gov/supporta.aspx), "state revenue and expenditure data [will] be made as open, transparent, and publicly accessible as is feasible with the goal of making government more accountable". Thanks to the availability of this public information, [cases of disproportionately high public employee salaries have come to light](https://latimesblogs.latimes.com/lanow/2010/07/bell-city-manager-might-highest-paid-in-nation-787637-a-year.html), to the backlash of the public. On the other hand, [issues of privacy arise] (https://www.governing.com/news/state/gov-survey-disclosing-government-employee-salaries-troubles-public-officials.html) around the reporting of this information, because it includes publishing the names, salaries, and employer agencies of millions of people across the US. 
@@ -23,8 +23,59 @@ It will also be useful to understand whether employee salary increases over time
 - [Washington state employee salaries database](http://fiscal.wa.gov/Salaries.aspx). 
 This dataset contains information on all Washington state employees, the agency they work for, their job titles, and salary information from 2014 to 2018 expressed in nominal dollars. The dataset is published by the US government, and is publicly available information pursuant to [RCW 42.56.210](https://app.leg.wa.gov/RCW/default.aspx?cite=42.56.210). This dataset will be the main source of information to help answer my problem statement, because it contains the most locally relevant information. 
 
+<details>
+  <summary>Data Fields</summary>
+| Variable      | Description |
+| -----------   | ----------- |
+| Agy           | Employer agency code |
+| AgyTitle      | Employer agency name |
+| Name          | Employee name, removed from hosted dataset |
+| JobTitle      | Employee job title |
+| Sal2014       | Salary in 2014 |
+| Sal2015       | Salary in 2015 |
+| Sal2016       | Salary in 2016 |
+| Sal2017       | Salary in 2017 |
+| Sal2018       | Salary in 2018 |
+  
+</details>
+
+
 - [California state employee salary data](https://publicpay.ca.gov/Reports/RawExport.aspx).
 These datasets contain names of all California state public employees, their employing agency, job title, and their salary information expressed in nominal dollars as well as value of benefits, from 2009 to 2018. This data is published by the US government, and is publicly available information pursuant to [California Government Code section 12463](https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=GOV&sectionNum=12463). This dataset will inform my analysis on equity in salaries across different states. Similarly to the Washington state data, the ethical issues raised by this dataset mainly relate to privacy. 
+																											
+
+| Variable      | Description |
+| -----------   | ----------- |
+| Year           | Year |
+| EmployerType      |  |
+| EmployerName          |  |
+| DepartmentOrSubdivision      |   |
+| Position       |   |
+| ElectedOfficial       |   |
+| Judicial       |  |
+| OtherPositions       |  |
+| MinPositionSalary       |  |
+| MaxPositionSalary |  |
+| ReportedBaseWage |  |
+| RegularPay |  |
+| OvertimePay |  |
+| LumpSumPay |  |
+| OtherPay |  |
+| TotalWages |  |
+| DefinedBenefitPlanContribution |  |
+| EmployeesRetirementCostCovered |  |
+| DeferredCompensationPlan |  |
+| HealthDentalVision |  |
+| TotalRetirementAndHealthContribution |  |
+| PensionFormula |  |
+| EmployerURL |  |
+| EmployerPopulation |  |
+| LastUpdatedDate |  |
+| EmployerCounty |  |
+| SpecialDistrictActivities |  |
+| IncludesUnfundedLiability |  |
+| SpecialDistrictType |  |
+
 
 - [Bureau of Economic Analysis prices and inflation data](https://www.bea.gov/data/prices-inflation). I plan to use the [GDP Price Index](https://www.bea.gov/data/prices-inflation/gdp-price-index) data to convert all salary data expressed in nominal US dollars to 2018 real US dollars in order to allow comparison of salary levels across time accounting for inflation, and in addition I hope to use the [Regional Price Parities by State and Metro Area](https://www.bea.gov/data/prices-inflation/regional-price-parities-state-and-metro-area) data to produce comparisons of salary levels between different states accounting to differences in costs of living. These datasets contain economic indices that relate to relative price levels in the US across time and states, which will advance my goals per the problem statement by allowing me to produce comparable financial estimates. This data is published by the US government, and is therefore in the public domain.
 
@@ -40,16 +91,21 @@ I believe the main beneficiaries of this analysis will be public employees at th
 My analysis will not seek to explain differences in pay disparities, only to describe the observed trends. A related and useful analysis would be to assess salaries by employee demographic information such as sex or race, which may inform drivers of pay disparities.
 
 # Potential limitations of the data
+- If someone began their employment part way through the year, is their aannual salary displayed in the data, or just the amount earned over the period they worked? If it is the latter, this will skew the data toward lower salaries and will be unlikely that these observations can be filtered out without additional information.
+- Does the WA data contain information on base pay without overtime or benefits? The CA data lists all these categories separately and explicitly.
+- Some employees in the dataset are not paid directly by tax funding (such as sports coaches), rather by funding raised by their department. This makes it harder to identify the source of funding for each employee.
+- In the WA data, student employees are subject to stricter laws around salary information, so job groups such as teaching assistants are not available in the data.
+- Unionized employees likely earn higher salaries, but I could not find data on the union status of employees, so it will be harder to parse out pay differences due to union status.
 
 ## Methodology
-# Analysis procedure
-My first step will be to download all the data and compile it for use in my programming environment. Next, I will clean the data, keeping only the fields of interest and grouping together employees by job groups. Once this is done, I can create aggregate metrics of salaries at the job, agency, and state level.
+### Analysis procedure
+My first step will be to download all the data and compile it for use in my programming environment. Next, I will clean the data, keeping only the fields of interest and grouping together employees by job groups. Once this is done, I can create aggregate metrics (means, medians, ranges) of salaries at the job, agency, and state level.
 
 Next, I will apply economic techniques for adjusting the raw data expressed in nominal dollars to bring all values into real 2018 dollars using the US GDP deflator series provided by the BLS. This will allow comparisons of salaries in a common currency base year which is adjusted for inflation. I will also adjust salaries using the BLS price parities to account for price levels differing among states. These techniques will allow for an apples-to-apples comparison of salary information across states and time.
 
 Finally, I will proceed to the analysis of the data through data mining and visualization. If time permits, I may also perform some statistical tests to check whether there are statistically significant differences among different groups.
 
-# Figures
+### Figures
 The primary means of communicating my findings will be through data visualizations. Some figures I plan to make are:
 - boxplots of salaries across positions within states
 - line graphs showing time trends across positions within states, with lines for median state household income
