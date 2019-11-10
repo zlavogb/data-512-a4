@@ -24,7 +24,7 @@ It will also be useful to understand whether employee salary increases over time
 This dataset contains information on all Washington state employees, the agency they work for, their job titles, and salary information from 2014 to 2018 expressed in nominal dollars. The dataset is published by the US government, and is publicly available information pursuant to [RCW 42.56.210](https://app.leg.wa.gov/RCW/default.aspx?cite=42.56.210). This dataset will be the main source of information to help answer my problem statement, because it contains the most locally relevant information. 
 
 <details>
-  <summary>Data Fields</summary>
+  <summary>&nbsp;&nbsp;&nbsp;Data Fields</summary>
 	
 | Variable      | Description |
 | -----------   | ----------- |
@@ -37,15 +37,16 @@ This dataset contains information on all Washington state employees, the agency 
 | Sal2016       | Salary in 2016 |
 | Sal2017       | Salary in 2017 |
 | Sal2018       | Salary in 2018 |
-
-  
+ 
 </details>
 
 
 - [California state employee salary data](https://publicpay.ca.gov/Reports/RawExport.aspx).
 These datasets contain names of all California state public employees, their employing agency, job title, and their salary information expressed in nominal dollars as well as value of benefits, from 2009 to 2018. This data is published by the US government, and is publicly available information pursuant to [California Government Code section 12463](https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=GOV&sectionNum=12463). This dataset will inform my analysis on equity in salaries across different states. Similarly to the Washington state data, the ethical issues raised by this dataset mainly relate to privacy. 
 																											
-
+<details>
+  <summary>&nbsp;&nbsp;&nbsp;Data Fields</summary>
+	
 | Variable      | Description |
 | -----------   | ----------- |
 | Year           | Year |
@@ -78,6 +79,7 @@ These datasets contain names of all California state public employees, their emp
 | IncludesUnfundedLiability |  |
 | SpecialDistrictType |  |
 
+</details>
 
 - [Bureau of Economic Analysis prices and inflation data](https://www.bea.gov/data/prices-inflation). I plan to use the [GDP Price Index](https://www.bea.gov/data/prices-inflation/gdp-price-index) data to convert all salary data expressed in nominal US dollars to 2018 real US dollars in order to allow comparison of salary levels across time accounting for inflation, and in addition I hope to use the [Regional Price Parities by State and Metro Area](https://www.bea.gov/data/prices-inflation/regional-price-parities-state-and-metro-area) data to produce comparisons of salary levels between different states accounting to differences in costs of living. These datasets contain economic indices that relate to relative price levels in the US across time and states, which will advance my goals per the problem statement by allowing me to produce comparable financial estimates. This data is published by the US government, and is therefore in the public domain.
 
