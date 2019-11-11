@@ -5,13 +5,13 @@
 ## Introduction
 
 My goal is to study how the base annual salary of public employees at institutions of higher education varies across different positions, institutions, states, and time. 
-I aim to classify employees into a set of different job types among public institutions in Washington and California. I am interested in the relative magnitude and ranges of salaries across positions for public employees. I would also like to explore how employee salaries in different institutions, within the same state and different states, compare across similar positions. Finally, I hope to understand the trends in salaries across time, particularly over the last 5 years, and whether salaries have generally increased at a rate higher than inflation. I will compare the mean salaries across positions to the median state income levels. I also plan to adjust salaries to reflect the costs of living across different states. 
+I aim to classify employees into a set of different job types among public institutions in Washington and California. I am interested in the relative magnitude and ranges of salaries across positions for public employees. I would also like to explore how employee salaries in different institutions, within the same state and different states, compare across similar positions. Finally, I hope to understand the trends in salaries across time, particularly over the last 9 years, and whether salaries have generally increased at a rate higher than inflation. I will compare the mean salaries across positions to the median state income levels. I also plan to adjust salaries to reflect the costs of living across different states. 
 
 I believe this topic is interesting and relevant because many public employees' salaries are funded by taxpayers, and states have the legal obligation to make this information public. Per the [Washington State Fiscal Information site](http://fiscal.wa.gov/supporta.aspx), "state revenue and expenditure data [will] be made as open, transparent, and publicly accessible as is feasible with the goal of making government more accountable". Thanks to the public availability of this information, [cases of disproportionately high public employee salaries have come to light](https://latimesblogs.latimes.com/lanow/2010/07/bell-city-manager-might-highest-paid-in-nation-787637-a-year.html), to the backlash of the public. On the other hand, [issues of privacy arise](https://www.governing.com/news/state/gov-survey-disclosing-government-employee-salaries-troubles-public-officials.html) around the reporting of this data, because it publishes the names, salaries, and employer agencies of millions of people across the US. 
 
 I also believe it will be interesting to identify any disparities and trends in pay between different types of positions and different institutions. [Legal disputes](https://caselaw.findlaw.com/wa-court-of-appeals/1126632.html) have arisen due to differences in pay among similar job classes in different state institutions. I believe this study will reflect on the fairness of employee salaries as reflected by disparities in pay. One known phenomenon is that the highest-paid Washington state employees are [university sports coaches, and are mostly men](https://patch.com/washington/across-wa/washingtons-millionaire-state-employees-are-men-mostly-coaches). 
 
-It will be useful to understand whether employee salary increases over time have kept up with the pace of inflation. While some employers tie salary increases to inflation, overall, real wages across the country have been slow to increase. [According to one report](https://www.washingtonpost.com/business/2018/08/10/america-wage-growth-is-getting-wiped-out-entirely-by-inflation/), "cost of living was up 2.9 percent from July 2017 to July 2018, [...] an inflation rate that outstripped a 2.7 percent increase in wages over the same period." For Washington state employees, general wage adjustments over the past 5 years [have ranged from 0% to 3%](https://www.ofm.wa.gov/state-human-resources/workforce-data-planning/workforce-data-trends/compensation/wage-adjustments-and-salary-increases).
+It will be useful to understand whether employee salary increases over time have kept up with the pace of inflation. While some employers tie salary increases to inflation, overall, real wages across the country have been slow to increase. [According to one report](https://www.washingtonpost.com/business/2018/08/10/america-wage-growth-is-getting-wiped-out-entirely-by-inflation/), "cost of living was up 2.9 percent from July 2017 to July 2018, [...] an inflation rate that outstripped a 2.7 percent increase in wages over the same period." For Washington state employees, general wage adjustments over the past 9 years [have ranged from -3% to 3%](https://www.ofm.wa.gov/state-human-resources/workforce-data-planning/workforce-data-trends/compensation/wage-adjustments-and-salary-increases).
 
 ### Research questions
 - Q1: What is the distribution of employee salaries, and what is the mean?
@@ -22,8 +22,10 @@ It will be useful to understand whether employee salary increases over time have
 
 ## Data used
 
-- [Washington state employee salaries database](http://fiscal.wa.gov/Salaries.aspx). This dataset is available for download in XLSX format from the Washington states fiscal information site, produced by the Legislative Evaluation and Accountability Program Committee in collaboration with the Office of Financial Management.
+- [Washington state employee salaries database, 2014-2018](http://fiscal.wa.gov/Salaries.aspx). This dataset is available for download in XLSX format from the Washington states fiscal information site, produced by the Legislative Evaluation and Accountability Program Committee in collaboration with the Office of Financial Management.
 This dataset contains information on all Washington state employees, the agency they work for, their job titles, and salary information from 2014 to 2018 expressed in nominal dollars. The dataset is published by the US government, and is publicly available information pursuant to [RCW 42.56.210](https://app.leg.wa.gov/RCW/default.aspx?cite=42.56.210). This dataset will be the main source of information to help answer my problem statement, as it contains the most locally relevant information. 
+
+- [Washington state employee salaries database, 2010-2013](https://data.wa.gov/Labor/Annual-Salary-2010-thru-2013/y3ds-rkew). Similar to the more recent dataset, this separate dataset contains data for 2010-2013.
 
 <details>
   <summary>Data Fields</summary>
@@ -34,6 +36,10 @@ This dataset contains information on all Washington state employees, the agency 
 | AgyTitle      | Employer agency name |
 | Name          | Employee name, removed from hosted dataset |
 | JobTitle      | Employee job title |
+| Sal2010       | Salary in 2010 |
+| Sal2011       | Salary in 2011 |
+| Sal2012       | Salary in 2012 |
+| Sal2013       | Salary in 2013 |
 | Sal2014       | Salary in 2014 |
 | Sal2015       | Salary in 2015 |
 | Sal2016       | Salary in 2016 |
@@ -44,7 +50,7 @@ This dataset contains information on all Washington state employees, the agency 
 
 
 - [California state employee salary data](https://publicpay.ca.gov/Reports/RawExport.aspx). This data is available for download in zipped CSV format from the California State Controller's Office, with a file for each agency and year.
-These datasets contain the employing agency of all California state public employees, job titles, and salary information expressed in nominal dollars, as well as value of benefits earned, from 2014 to 2018. A number of other fields are available which are not used in this analysis. This data is published by the US government, and is publicly available information pursuant to [California Government Code section 12463](https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=GOV&sectionNum=12463). This dataset will supplement my analysis on equality in salaries across different states.
+These datasets contain the employing agency of all California state public employees, job titles, and salary information expressed in nominal dollars, as well as value of benefits earned, from 2010 to 2018. A number of other fields are available which are not used in this analysis. This data is published by the US government, and is publicly available information pursuant to [California Government Code section 12463](https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=GOV&sectionNum=12463). This dataset will supplement my analysis on equality in salaries across different states.
 																											
 <details>
   <summary>Data Fields</summary>
